@@ -9,16 +9,18 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-       public function up(): void
-   {
-       if (Schema::hasTable('gundams')) {
-           return;
-       }
+    public function up(): void
+{
+    if (Schema::hasTable('gundams')) {
+        return;
+    }
 
-       Schema::create('gundams', function (Blueprint $table) {
-           // ... isi kolom yang sudah ada
-       });
-   }
+    Schema::create('gundams', function (Blueprint $table) {
+        $table->id();
+        // kolom-kolom gundams milikmu yang asli, jangan dikosongkan
+        $table->timestamps();
+    });
+}
 
     /**
      * Reverse the migrations.
