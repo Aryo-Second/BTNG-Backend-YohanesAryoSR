@@ -6,25 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
-{
-    if (Schema::hasTable('gundams')) {
-        return;
+    {
+        Schema::create('gundams', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama')->unique();
+            $table->string('merk');
+            $table->boolean('ori')->default(true);
+            $table->unsignedBigInteger('harga_retail');
+            $table->timestamps();
+        });
     }
 
-    Schema::create('gundams', function (Blueprint $table) {
-        $table->id();
-        // kolom-kolom gundams milikmu yang asli, jangan dikosongkan
-        $table->timestamps();
-    });
-}
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('gundams');
